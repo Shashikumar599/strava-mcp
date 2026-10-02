@@ -1,0 +1,31 @@
+# Fly.io app config. App names are global: if this one is taken, change `app` AND `BASE_URL`.
+app = "side-strava"
+primary_region = "sin"  # Singapore: closest Fly region to India
+
+[env]
+  # Not secret. STRAVA_CLIENT_ID / STRAVA_CLIENT_SECRET are set with `fly secrets set`.
+  BASE_URL = "https://side-strava.fly.dev"
+  DATABASE_URL = "sqlite:////data/store.db"  # on the volume below, survives restarts/deploys
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "off"  # stay up while testing
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [[http_service.checks]]
+    method = "GET"
+    path = "/health"
+    interval = "15s"
+    timeout = "5s"
+    grace_period = "10s"
+
+# SQLite lives on this volume: one machine, one volume (SQLite can't be shared across machines).
+[[mounts]]
+  source = "data"
+  destination = "/data"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

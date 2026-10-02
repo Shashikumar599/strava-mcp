@@ -1,0 +1,31 @@
+# The Dockerfile copies only server.py, auth/ and strava/, but everything not ignored here is
+# still uploaded to the builder as build context. Keep secrets and bulk out of it.
+
+# Secrets and local data: must never be sent to the image builder
+.env
+.env.*
+!.env.example
+tokens.json
+store.db
+store.db-*
+*.db
+*.bak*
+
+# Local tooling, caches, generated output
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+node_modules/
+brag-output/
+.agents/
+.claude/
+skills-lock.json
+.git/
+.DS_Store
+
+# Not needed at runtime
+tests/
+notes.md
+README.md

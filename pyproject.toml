@@ -1,0 +1,19 @@
+[project]
+name = "strava-mcp"
+version = "0.2.0"
+description = "Remote MCP server for Strava runs, with its own OAuth 2.1 authorization server (Strava as login)"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28.1",
+    "mcp[cli]>=2.2.0",
+    "python-dotenv>=1.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
