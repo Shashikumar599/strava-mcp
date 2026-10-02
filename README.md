@@ -8,6 +8,9 @@ A remote [MCP](https://modelcontextprotocol.io) server that lets Claude (or any 
 
 Design write-up: **[notes.md](notes.md)** covers the design principles, the auth model and the confused deputy problem.
 
+demo
+https://github.com/user-attachments/assets/bac884d7-6a4b-40d2-9f33-f3667f22a332
+
 ## Tools
 
 | Tool | What it returns |
